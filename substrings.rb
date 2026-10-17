@@ -1,6 +1,11 @@
 # Declares the function that will create the hash
 def substrings(string, dictionary)
-  
+  string.downcase!
+  dictionary.reduce(Hash.new(0)) do |hash, word|
+    word.downcase!
+    hash[word] += string.scan(/#{word}/).length if string.include?(word)
+    hash
+  end
 end
 
 # Creates the dictionary
